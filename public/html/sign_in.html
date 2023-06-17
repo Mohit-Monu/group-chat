@@ -54,11 +54,12 @@
             }
             const data = await axios(config)
             if (data) {
+                localStorage.setItem('TOKEN',data.data.token)
                 output.innerHTML = "logging in"
                 output.style.color = "green"
-                setTimeout(() => {
-                    window.location.href = "./signned_in.html"
-                }, 2000)
+                // setTimeout(() => {
+                //     window.location.href = "./signned_in.html"
+                // }, 2000)
             }
         } catch (err) {
             const output = document.getElementById('wrongpasswor')
