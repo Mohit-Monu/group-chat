@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/sign.css">
+</head>
+
+<body>
+    <form id="form">
+        <div class="login-box">
+            <div class="login-header">
+                <header>Sign in</header>
+            </div>
+            <div class="input-box">
+                <input type="text" class="input-field" placeholder="Email" autocomplete="off" required id="emai">
+            </div>
+            <div class="input-box">
+                <input type="password" class="input-field" placeholder="Password" autocomplete="off" required
+                    id="passwor">
+            </div>
+            <div class="forgot">
+                <section>
+                    <a href="./forgetpass.html">Forgot password</a>
+                </section>
+            </div>
+            <header id="wrongpasswor"></header>
+            <div class="input-submit">
+                <button class="submit-btn" id="submit"></button>
+                <label for="submit">Sign In</label>
+            </div>
+    </form>
+    <div class="sign-up-link">
+        <p>Don't have account? <a href="./sign_up.html">Sign Up</a></p>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    document.getElementById('form').addEventListener('submit', async (e) => {
+        e.preventDefault()
+        const email = document.getElementById('emai').value
+        const password = document.getElementById('passwor').value
+        try {
+            const output = document.getElementById('wrongpasswor')
+            const config = {
+                url: "http://localhost:3000/user/sign_in",
+                method: "POST",
+                data: { 
+                    'email': email,
+                    'password': password
+                }
+            }
+            const data = await axios(config)
+            if (data) {
+                output.innerHTML = "logging in"
+                output.style.color = "green"
+                setTimeout(() => {
+                    window.location.href = "./signned_in.html"
+                }, 2000)
+            }
+        } catch (err) {
+            const output = document.getElementById('wrongpasswor')
+            if (err.response.status == 500) {
+                output.innerHTML = "something went wrong"
+                output.style.color = "red"
+            } else if (err.response.status == 404) {
+                output.innerHTML = "email not found"
+                output.style.color = "red"
+            } else if (err.response.status == 501) {
+                output.innerHTML = "Wrong Password"
+                output.style.color = "red"
+            }
+        }
+    })
+</script>
+
+</html>

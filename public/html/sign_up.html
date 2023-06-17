@@ -1,12 +1,13 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/sign.css">
 </head>
+
 <body>
     <form id="form">
         <div class="login-box">
@@ -20,16 +21,11 @@
                 <input type="text" class="input-field" placeholder="Email" autocomplete="off" required id="emai">
             </div>
             <div class="input-box">
-                <input type="number" class="input-field" placeholder="Phone no" autocomplete="off" required
-                    id="num">
-            </div>            
+                <input type="number" class="input-field" placeholder="Phone no" autocomplete="off" required id="num">
+            </div>
             <div class="input-box">
                 <input type="password" class="input-field" placeholder="Password" autocomplete="off" required
                     id="password1">
-            </div>
-            <div class="input-box">
-                <input type="password" class="input-field" placeholder="Confirm Password" autocomplete="off" required
-                    id="password2">
             </div>
             <header id="emailalread"></header>
             <div class="input-submit">
@@ -41,4 +37,44 @@
         <p>Already have account? <a href="./sign_in.html">Sign In</a></p>
     </div>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    document.getElementById('form').addEventListener('submit', async (e) => {
+        e.preventDefault()
+        var name = document.getElementById('nam').value
+        var email = document.getElementById('emai').value
+        var phone = document.getElementById('num').value
+        var password = document.getElementById('password1').value
+
+        try {
+            console.log(name, email, phone, password);
+            const config = {
+                url: "http://localhost:3000/user/sign_up",
+                method: "POST",
+                data: {
+                    'name': name,
+                    'email': email,
+                    'phone': phone,
+                    'password': password
+                }
+            }
+            const data = await axios(config);
+            console.log(data)
+            var output = document.getElementById('emailalread');
+            output.innerHTML = 'account created successfully'
+            output.style.color = 'green'
+        } catch (err) {
+            if (err.response.status == 500) {
+                var output = document.getElementById('emailalread');
+                output.innerHTML = 'something went wrong'
+                output.style.color = 'red'
+            } else if (err.response.status == 501) {
+                var output = document.getElementById('emailalread');
+                output.innerHTML = 'Already a user'
+                output.style.color = 'red'
+            }
+        }
+    })
+</script>
+
 </html>
