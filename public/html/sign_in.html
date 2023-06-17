@@ -15,7 +15,7 @@
                 <header>Sign in</header>
             </div>
             <div class="input-box">
-                <input type="text" class="input-field" placeholder="Phone no" autocomplete="off" required id="phon">
+                <input type="text" class="input-field" placeholder="Email" autocomplete="off" required id="emai">
             </div>
             <div class="input-box">
                 <input type="password" class="input-field" placeholder="Password" autocomplete="off" required
@@ -40,7 +40,7 @@
 <script>
     document.getElementById('form').addEventListener('submit', async (e) => {
         e.preventDefault()
-        const phone = document.getElementById('phon').value
+        const email = document.getElementById('emai').value
         const password = document.getElementById('passwor').value
         try {
             const output = document.getElementById('wrongpasswor')
@@ -48,7 +48,7 @@
                 url: "http://localhost:3000/user/sign_in",
                 method: "POST",
                 data: { 
-                    'phone': phone,
+                    'email': email,
                     'password': password
                 }
             }

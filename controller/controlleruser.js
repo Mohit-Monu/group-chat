@@ -9,9 +9,11 @@ async function signUp(req, res) {
     const phone = req.body.phone;
     const password = req.body.password;
     const search = await USER.findOne({ where: { phone: phone } });
-    if (search) {
+    const search2 = await USER.findOne({ where: { email: email } });
+
+    if (search || search2) {
       res.status(501).json({ message: "Already a user" });
-    } else {
+    } else if(!search && !search2){
       const saltrounds = 10;
       bcrypt.hash(password, saltrounds, async (err, hash) => {
         if (hash) {
@@ -40,9 +42,9 @@ async function signUp(req, res) {
 }
 async function signIn(req, res) {
   try {
-    const phone = req.body.phone;
+    const email = req.body.email;
     const password = req.body.password;
-    const search = await USER.findOne({ where: { phone: phone } });
+    const search = await USER.findOne({ where: { email: email } });
     if (search) {
       bcrypt.compare(password, search.password, (err, result) => {
         if (result) {
