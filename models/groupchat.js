@@ -9,7 +9,7 @@ const groupchat=sequelize.define("groupchat",
         primaryKey:true
     },
     massage:{
-        type:Sequelize.STRING
+        type:Sequelize.STRING(5000)
     },
     name:{
         type:Sequelize.STRING

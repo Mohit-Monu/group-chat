@@ -15,7 +15,7 @@
     </div>
     <hr>
     <br>
-    <div class="chating">
+    <div class="chating" id="boxx">
         <!-- <div class="chatother">
             <h3 class="textothers">Ram:Hi There</h3>
         </div>
@@ -43,17 +43,28 @@
 </body>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
+    const token = localStorage.getItem("TOKEN")
     document.getElementById('sendbutt').addEventListener("click", sendmess)
     window.addEventListener("DOMContentLoaded", async () => {
         await pageloader();
     })
     async function pageloader() {
-
-    }
-    async function sendmess(e) {
-        e.preventDefault()
         try {
-            const token=localStorage.getItem("TOKEN")
+            const config = {
+                url: "http://localhost:3000/group/getsmss",
+                method: "GET",
+                headers: { "token": token }
+            }
+            const masages = await axios(config);
+            const messages = masages.data.messages;
+            const userid = masages.data.userId;
+            loadexp(messages, userid)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+    async function sendmess() {
+        try {
             var message = document.getElementById('messag').value
             const config = {
                 method: "POST",
@@ -61,14 +72,40 @@
                 data: {
                     'message': message
                 },
-                headers:{
-                    "token":token
+                headers: {
+                    "token": token
                 }
             }
             await axios(config)
         } catch (err) {
             console.log(err)
         }
+        await deleteall();
+        await pageloader()
+    }
+    async function loadexp(messages, userid) {
+        const box = document.getElementById("boxx")
+        messages.forEach(element => {
+            const div = document.createElement("div");
+            const h3 = document.createElement("h3");
+            if (element.userId == userid) {
+                div.className = "chatyou";
+                h3.className = "textyou";
+                h3.innerHTML = "You" + " - " + element.massage
+            } else {
+                div.className = "chatother";
+                h3.className = "textothers";
+                h3.innerHTML = element.name + " - " + element.massage
+            }
+            box.appendChild(div);
+            div.appendChild(h3)
+        });
+        box.scrollTop = box.scrollHeight - box.clientHeight;
+
+    }
+    function deleteall(){
+        var box = document.getElementById('boxx')
+        box.innerHTML=""
     }
 </script>
 
