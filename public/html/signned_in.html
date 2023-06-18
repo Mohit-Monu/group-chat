@@ -1,28 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/signned.css">
 </head>
+
 <body>
     <div class="head">
-    <h2>Welcome to chat app</h2>
-    <a href="./sign_in.html" class="log">Log out</a>
+        <h2>Welcome to chat app</h2>
+        <a href="./sign_in.html" class="log">Log out</a>
     </div>
     <hr>
     <br>
     <div class="chating">
-     <center>
-        
-     </center>
+        <!-- <div class="chatother">
+            <h3 class="textothers">Ram:Hi There</h3>
+        </div>
+        <div class="chatother">
+            <h3 class="textothers">Ram:Hi There</h3>
+        </div>
+        <div class="chatother">
+            <h3 class="textothers">Ram:Hi There</h3>
+        </div>
+        <div class="chatother">
+            <h3 class="textothers">Ram:Hi There</h3>
+        </div>
+        <div class="chatyou">
+            <h3 class="textyou">You:Hi There</h3>
+        </div> -->
     </div>
     <div class="chat">
-        <input type="text"> 
-        <button class="sendbutt">
-            Send
-        </button>
+        <form action="">
+            <input type="text" id="messag" placeholder="plese write massage here" required>
+            <button class="sendbutt" id="sendbutt" type="submit">
+                Send
+            </button>
+        </form>
     </div>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    document.getElementById('sendbutt').addEventListener("click", sendmess)
+    window.addEventListener("DOMContentLoaded", async () => {
+        await pageloader();
+    })
+    async function pageloader() {
+
+    }
+    async function sendmess(e) {
+        e.preventDefault()
+        try {
+            const token=localStorage.getItem("TOKEN")
+            var message = document.getElementById('messag').value
+            const config = {
+                method: "POST",
+                url: "http://localhost:3000/group/sendmess",
+                data: {
+                    'message': message
+                },
+                headers:{
+                    "token":token
+                }
+            }
+            await axios(config)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+</script>
+
 </html>

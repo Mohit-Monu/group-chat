@@ -65,3 +65,31 @@
     overflow: auto;
     border: 2px solid #333
 }
+.chatother{
+    margin-top: 10px;
+    margin-left: 40px;
+    border: 2px solid gray;
+    height: auto;
+    width: 80%;
+    border-radius: 25px;
+}
+.chatyou{
+    float: right;
+    margin-top: 10px;
+    margin-right: 40px;
+    border: 2px solid red;
+    height: auto;
+    width: 80%;
+    border-radius: 25px;
+}
+.textyou{
+    text-align: right;
+    padding-right: 20px;
+    background-color: #3498DB;
+    border-radius: 25px;
+}
+.textothers{
+    padding-left: 20px;
+    background-color: #FFC0CB;
+    border-radius: 25px;
+}
