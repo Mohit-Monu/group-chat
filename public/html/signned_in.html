@@ -46,7 +46,9 @@
     const token = localStorage.getItem("TOKEN")
     document.getElementById('sendbutt').addEventListener("click", sendmess)
     window.addEventListener("DOMContentLoaded", async () => {
-        await pageloader();
+        refreshinterval()
+        pageloader();
+
     })
     async function pageloader() {
         try {
@@ -58,6 +60,7 @@
             const masages = await axios(config);
             const messages = masages.data.messages;
             const userid = masages.data.userId;
+            await deleteall();
             loadexp(messages, userid)
         } catch (err) {
             console.log(err)
@@ -80,8 +83,6 @@
         } catch (err) {
             console.log(err)
         }
-        await deleteall();
-        await pageloader()
     }
     async function loadexp(messages, userid) {
         const box = document.getElementById("boxx")
@@ -101,11 +102,15 @@
             div.appendChild(h3)
         });
         box.scrollTop = box.scrollHeight - box.clientHeight;
-
     }
-    function deleteall(){
+    function deleteall() {
         var box = document.getElementById('boxx')
-        box.innerHTML=""
+        box.innerHTML = ""
+    }
+    async function refreshinterval() {
+        setInterval(async function () {
+            await pageloader();
+        }, 1000);
     }
 </script>
 
