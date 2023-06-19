@@ -22,7 +22,7 @@ app.use(bodyparser.json())
 app.use(userRoutes);
 app.use(groupchatRoutes)
 
-USER.hasMany(GROUPCHAT);
+USER.hasMany(GROUPCHAT)
 GROUPCHAT.belongsTo(USER)
 
 sequelize.sync(

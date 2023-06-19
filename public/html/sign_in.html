@@ -47,17 +47,18 @@
             const config = {
                 url: "http://localhost:3000/user/sign_in",
                 method: "POST",
-                data: { 
+                data: {
                     'email': email,
                     'password': password
                 }
             }
             const data = await axios(config)
             if (data) {
-                localStorage.setItem('TOKEN',data.data.token)
+                localStorage.setItem('TOKEN', data.data.token)
                 output.innerHTML = "logging in"
                 output.style.color = "green"
                 setTimeout(() => {
+                    localStorage.removeItem('massages')
                     window.location.href = "./signned_in.html"
                 }, 1000)
             }

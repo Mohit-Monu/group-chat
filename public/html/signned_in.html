@@ -33,7 +33,7 @@
         </div> -->
     </div>
     <div class="chat">
-        <form action="">
+        <form id="form">
             <input type="text" id="messag" placeholder="plese write massage here" required>
             <button class="sendbutt" id="sendbutt" type="submit">
                 Send
@@ -44,27 +44,92 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
     const token = localStorage.getItem("TOKEN")
-    document.getElementById('sendbutt').addEventListener("click", sendmess)
-    window.addEventListener("DOMContentLoaded", async () => {
-        refreshinterval()
-        pageloader();
-
+    const box = document.getElementById("boxx")
+    document.getElementById('form').addEventListener("submit", sendmess)
+    window.addEventListener("DOMContentLoaded", () => {
+        addtols()
+        autoloader()
     })
-    async function pageloader() {
+    async function addtols() {
+        var lastmsgid = 0;
+        if (localStorage.getItem("massages") == null) {
+            const arr = [];
+            localStorage.setItem("massages", JSON.stringify(arr));
+        } else {
+            const massages = JSON.parse(localStorage.getItem("massages"))
+            if (massages.length == 0) {
+            } else {
+                lastmsgid = massages[massages.length - 1].id
+                massages.forEach(element => {
+                    const div = document.createElement("div");
+                    const h3 = document.createElement("h3");
+                    var newobj = {}
+                    if (element.sender == "You") {
+                        div.className = "chatyou";
+                        h3.className = "textyou";
+                        h3.innerHTML = "You" + " - " + element.massages
+                    } else {
+                        div.className = "chatother";
+                        h3.className = "textothers";
+                        h3.innerHTML = element.sender + " - " + element.massages
+                    }
+                    box.appendChild(div);
+                    div.appendChild(h3)
+                });
+            }
+        }
+        pageloader(lastmsgid)
+    }
+    async function pageloader(lastmsgid) {
         try {
             const config = {
-                url: "http://localhost:3000/group/getsmss",
+                url: "http://localhost:3000/group/getsmss/" + lastmsgid,
                 method: "GET",
                 headers: { "token": token }
             }
             const masages = await axios(config);
             const messages = masages.data.messages;
             const userid = masages.data.userId;
-            await deleteall();
-            loadexp(messages, userid)
+            if (messages.length >= 1) {
+                await loadexp(messages, userid)
+                box.scrollTop = box.scrollHeight - box.clientHeight;
+            }
         } catch (err) {
             console.log(err)
         }
+    }
+    async function loadexp(messages, userid) {
+        var lsdata = localStorage.getItem("massages")
+        lsdata = JSON.parse(lsdata);
+        messages.forEach(element => {
+            const div = document.createElement("div");
+            const h3 = document.createElement("h3");
+            var newobj = {}
+            if (element.userId == userid) {
+                div.className = "chatyou";
+                h3.className = "textyou";
+                h3.innerHTML = "You" + " - " + element.massage
+                newobj = {
+                    id: element.id,
+                    massages: element.massage,
+                    sender: "You"
+                }
+            } else {
+                div.className = "chatother";
+                h3.className = "textothers";
+                h3.innerHTML = element.name + " - " + element.massage
+                newobj = {
+                    id: element.id,
+                    massages: element.massage,
+                    sender: element.name
+                }
+            }
+            box.appendChild(div);
+            div.appendChild(h3)
+            lsdata.push(newobj)
+        });
+        lsdata = JSON.stringify(lsdata);
+        localStorage.setItem("massages", lsdata)
     }
     async function sendmess() {
         try {
@@ -80,38 +145,23 @@
                 }
             }
             await axios(config)
+
         } catch (err) {
             console.log(err)
         }
     }
-    async function loadexp(messages, userid) {
-        const box = document.getElementById("boxx")
-        messages.forEach(element => {
-            const div = document.createElement("div");
-            const h3 = document.createElement("h3");
-            if (element.userId == userid) {
-                div.className = "chatyou";
-                h3.className = "textyou";
-                h3.innerHTML = "You" + " - " + element.massage
+    async function autoloader() {
+        setInterval(() => {
+            var lastid = JSON.parse(localStorage.getItem("massages"));
+            lastid = lastid[lastid.length - 1].id;
+            if (lastid == undefined) {
+                pageloader('0');
             } else {
-                div.className = "chatother";
-                h3.className = "textothers";
-                h3.innerHTML = element.name + " - " + element.massage
+                pageloader(lastid)
             }
-            box.appendChild(div);
-            div.appendChild(h3)
-        });
-        box.scrollTop = box.scrollHeight - box.clientHeight;
-    }
-    function deleteall() {
-        var box = document.getElementById('boxx')
-        box.innerHTML = ""
-    }
-    async function refreshinterval() {
-        setInterval(async function () {
-            await pageloader();
         }, 1000)
     }
+
 </script>
 
 </html>
