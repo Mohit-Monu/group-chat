@@ -7,6 +7,8 @@ const sequelize=require('./database')
 
 const userRoutes=require('./routes/user')
 const groupchatRoutes=require("./routes/groupchat")
+const adminRoutes=require("./routes/admin")
+
 
 const USER=require('./models/user')
 const GROUPCHAT=require('./models/groupchat')
@@ -22,6 +24,7 @@ app.use(bodyparser.json())
 
 app.use(userRoutes);
 app.use(groupchatRoutes)
+app.use(adminRoutes)
 
 USER.hasMany(GROUPCHAT)
 GROUPCHAT.belongsTo(USER)
@@ -30,7 +33,7 @@ USER.hasMany(GROUPS)
 GROUPS.belongsTo(USER)
 
 sequelize.sync(
-    {force:true}
+    // {force:true}
 )
 .then(
     app.listen(process.env.PORT)

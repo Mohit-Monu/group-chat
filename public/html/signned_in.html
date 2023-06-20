@@ -45,59 +45,28 @@
         </div>
         <div class="child2">
             <div class="groupinfo">
-                <h1 class="groupname3"></h1>
+                <h3 class="groupname3"></h3>
+            </div>
+            <div class="sharewithother">
+                <span>you can share this link also to invite others to the group</span>
+                <br>
+                <br>
+                <span id="spanlink">you can share this link also to invite others to the group</span>
+            </div>
+            <div class="sharewithother2">
+                <input type="text" placeholder="enter email or phone to send invite" required id="sendinvitedet">
+                <button class="sendbutt" id="sendinvit" type="submit">
+                    Invite
+                </button>
+                <br>
+                <span id="statussending"></span>
+                <div>
+                    
+                </div>
             </div>
             <div class="chating" id="boxx">
                 <h2 class="selecttext">Select group to view chats</h2>
                 <!-- <div class="chatother">
-                    <h3 class="textothers">Ram:Hi There</h3>
-                </div>
-                <div class="chatother">
-                    <h3 class="textothers">Ram:Hi There</h3>
-                </div>
-                <div class="chatother">
-                    <h3 class="textothers">Ram:Hi There</h3>
-                </div>
-                <div class="chatother">
-                    <h3 class="textothers">Ram:Hi There</h3>
-                </div>
-                <div class="chatyou">
-                    <h3 class="textyou">You:Hi There</h3>
-                </div>
-                <div class="chatother">
-                    <h3 class="textothers">Ram:Hi There</h3>
-                </div>
-                <div class="chatother">
-                    <h3 class="textothers">Ram:Hi There</h3>
-                </div>
-                <div class="chatother">
-                    <h3 class="textothers">Ram:Hi There</h3>
-                </div>
-                <div class="chatother">
-                    <h3 class="textothers">Ram:Hi There</h3>
-                </div>
-                <div class="chatyou">
-                    <h3 class="textyou">You:Hi There</h3>
-                </div>
-                <div class="chatother">
-                    <h3 class="textothers">Ram:Hi There</h3>
-                </div>
-                <div class="chatother">
-                    <h3 class="textothers">Ram:Hi There</h3>
-                </div>
-                <div class="chatother">
-                    <h3 class="textothers">Ram:Hi There</h3>
-                </div>
-                <div class="chatother">
-                    <h3 class="textothers">Ram:Hi There</h3>
-                </div>
-                <div class="chatyou">
-                    <h3 class="textyou">You:Hi There</h3>
-                </div>
-                <div class="chatother">
-                    <h3 class="textothers">Ram:Hi There</h3>
-                </div>
-                <div class="chatother">
                     <h3 class="textothers">Ram:Hi There</h3>
                 </div>
                 <div class="chatother">
@@ -127,6 +96,13 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
     var timeoutforoption;
+    const statussendingmail = document.getElementById("statussending")
+    const sendinvitedetails = document.getElementById("sendinvitedet").value
+    const sharewithother = document.querySelector(".sharewithother")
+    const sharewithother2 = document.querySelector(".sharewithother2")
+    document.getElementById('sendinvit').addEventListener("click", sendinvite)
+    const groupname3 = document.querySelector('.groupname3');
+    const groupinfo = document.querySelector('.groupinfo');
     document.querySelector('.groupname1').addEventListener("click", creategroup);
     const token = localStorage.getItem("TOKEN")
     const box = document.getElementById("boxx")
@@ -171,21 +147,21 @@
         try {
             if (promt == "") {
                 return
-            }else{
+            } else {
                 const config = {
-                method: "POST",
-                url: "http://localhost:3000/group/creategroup",
-                data: {
-                    groupname: promt,
-                    datenow: Date.now()
-                },
-                headers: {
-                    "token": token
+                    method: "POST",
+                    url: "http://localhost:3000/group/creategroup",
+                    data: {
+                        groupname: promt,
+                        datenow: Date.now()
+                    },
+                    headers: {
+                        "token": token
+                    }
                 }
-            }
-            const res = await axios(config)
+                const res = await axios(config)
 
-            await pageloader2()
+                await pageloader2()
             }
 
         } catch (err) {
@@ -231,9 +207,9 @@
     }
     async function loadmsg(e) {
         const par = e.target.parentElement;
-        console.log(par)
         var id = par.firstChild
-        var groupname=par.children[2]
+        var groupname = par.children[2]
+        var role = par.children[1]
         id = id.value
         await localStorage.setItem("currentgroup", id)
         try {
@@ -247,11 +223,19 @@
             const userid = masages.data.userId;
             await loadexp(messages, userid)
             box.scrollTop = box.scrollHeight - box.clientHeight;
-            const groupname3=document.querySelector('.groupname3');
-            const groupinfo=document.querySelector('.groupinfo');
-            groupinfo.style.display="inline";
-            groupname3.innerHTML=groupname.innerHTML
-            groupinfo.addEventListener("click",loadgroupinfo)
+            groupinfo.style.display = "block";
+            groupname3.innerHTML = groupname.innerHTML
+            statussendingmail.innerHTML = ""
+            var sendinvitedetails = document.getElementById("sendinvitedet")
+            sendinvitedetails.value = ""
+            const spanlinkk = document.getElementById('spanlink')
+            spanlinkk.innerHTML = ""
+            if (role.value === "Admin") {
+                groupinfo.addEventListener("click", loadgroupinfoadmin)
+            } else {
+                groupinfo.addEventListener("click", loadgroupinfo)
+
+            }
         } catch (err) {
             console.log(err)
         }
@@ -259,7 +243,10 @@
     async function loadexp(messages, userid) {
         const box = document.getElementById("boxx")
         box.innerHTML = ""
-        chat.style.display = "inline"
+        chat.style.display = "block"
+        sharewithother.style.display = "none"
+        sharewithother2.style.display = "none"
+
         messages.forEach(element => {
             const div = document.createElement("div");
             const h3 = document.createElement("h3");
@@ -276,10 +263,58 @@
             div.appendChild(h3)
         });
     }
-    async function autoload() {
+    async function loadgroupinfoadmin() {
+
+        box.innerHTML = "";
+        chat.style.display = "none"
+        const spanlinkk = document.getElementById('spanlink')
+        const groupid = localStorage.getItem("currentgroup")
+        spanlinkk.innerHTML = "http://localhost:3000/admin/inviteother/" + groupid
+        sharewithother.style.display = "block"
+        sharewithother2.style.display = "block"
+    }
+    async function sendinvite() {
+        const sendinvitedetails = document.getElementById("sendinvitedet").value
+
+        if (sendinvitedetails == "") {
+
+            statussendingmail.innerHTML = "please enter Email or phone no"
+            statussendingmail.style.color = "red"
+        } else {
+            try {
+                const groupid = localStorage.getItem("currentgroup")
+                const config = {
+                    url: "http://localhost:3000/admin/invitesearch",
+                    method: "POST",
+                    data: {
+                        invitedetails: sendinvitedetails,
+                        group_id: groupid,
+                        group_name: groupname3.innerHTML
+                    },
+                    headers: {
+                        "token": token
+                    }
+                }
+                const users = await axios(config)
+                statussendingmail.innerHTML = "Added " + users.data.data.name + " to the group"
+                statussendingmail.style.color = "green"
+            } catch (err) {
+                console.log(err)
+                if (err.response.status == 404) {
+                    statussendingmail.innerHTML = "invalid Email or phone no"
+                    statussendingmail.style.color = "red"
+                } else if (err.response.status == 500) {
+                    statussendingmail.innerHTML = "Something went wrong"
+                    statussendingmail.style.color = "red"
+                } else if (err.response.status == 503) {
+                    statussendingmail.innerHTML = "Already a member"
+                    statussendingmail.style.color = "red"
+                }
+            }
+        }
     }
     async function loadgroupinfo(){
-        window.location.href="./groupsetting.html"
+
     }
 </script>
 
