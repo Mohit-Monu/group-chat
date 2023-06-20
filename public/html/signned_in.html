@@ -13,155 +13,274 @@
         <h2>Welcome to chat app</h2>
         <a href="./sign_in.html" class="log">Log out</a>
     </div>
+    <br>
+    <div class="parent">
+        <div class="child1">
+            <div class="groupdiv1">
+                <h3 class="groupname1">Create a group</h3>
+            </div>
+            <div id="datas">
+                <!-- <div class="groupdiv">
+                    <h3 class="groupname">Hero</h3>
+                </div>
+                <div class="groupdiv">
+                    <h3 class="groupname">Hero</h3>
+                </div>
+                <div class="groupdiv">
+                    <h3 class="groupname">Hero</h3>
+                </div> -->
+                <!-- <div class="groupdiv">
+                    <h3 class="groupname">Hero</h3>
+                </div>
+                <div class="groupdiv">
+                    <h3 class="groupname">Hero</h3>
+                </div>
+                <div class="groupdiv">
+                    <h3 class="groupname">Hero</h3>
+                </div>
+                <div class="groupdiv">
+                    <h3 class="groupname">Hero</h3>
+                </div> -->
+            </div>
+        </div>
+        <div class="child2">
+            <div class="groupinfo">
+                <h1 class="groupname3"></h1>
+            </div>
+            <div class="chating" id="boxx">
+                <h2 class="selecttext">Select group to view chats</h2>
+                <!-- <div class="chatother">
+                    <h3 class="textothers">Ram:Hi There</h3>
+                </div>
+                <div class="chatother">
+                    <h3 class="textothers">Ram:Hi There</h3>
+                </div>
+                <div class="chatother">
+                    <h3 class="textothers">Ram:Hi There</h3>
+                </div>
+                <div class="chatother">
+                    <h3 class="textothers">Ram:Hi There</h3>
+                </div>
+                <div class="chatyou">
+                    <h3 class="textyou">You:Hi There</h3>
+                </div>
+                <div class="chatother">
+                    <h3 class="textothers">Ram:Hi There</h3>
+                </div>
+                <div class="chatother">
+                    <h3 class="textothers">Ram:Hi There</h3>
+                </div>
+                <div class="chatother">
+                    <h3 class="textothers">Ram:Hi There</h3>
+                </div>
+                <div class="chatother">
+                    <h3 class="textothers">Ram:Hi There</h3>
+                </div>
+                <div class="chatyou">
+                    <h3 class="textyou">You:Hi There</h3>
+                </div>
+                <div class="chatother">
+                    <h3 class="textothers">Ram:Hi There</h3>
+                </div>
+                <div class="chatother">
+                    <h3 class="textothers">Ram:Hi There</h3>
+                </div>
+                <div class="chatother">
+                    <h3 class="textothers">Ram:Hi There</h3>
+                </div>
+                <div class="chatother">
+                    <h3 class="textothers">Ram:Hi There</h3>
+                </div>
+                <div class="chatyou">
+                    <h3 class="textyou">You:Hi There</h3>
+                </div>
+                <div class="chatother">
+                    <h3 class="textothers">Ram:Hi There</h3>
+                </div>
+                <div class="chatother">
+                    <h3 class="textothers">Ram:Hi There</h3>
+                </div>
+                <div class="chatother">
+                    <h3 class="textothers">Ram:Hi There</h3>
+                </div>
+                <div class="chatother">
+                    <h3 class="textothers">Ram:Hi There</h3>
+                </div>
+                <div class="chatyou">
+                    <h3 class="textyou">You:Hi There</h3>
+                </div> -->
+            </div>
+            <div class="chat">
+                <form id="form">
+                    <input type="text" id="messag" placeholder="plese write massage here" required>
+                    <button class="sendbutt" id="sendbutt" type="submit">
+                        Send
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
     <hr>
     <br>
-    <div class="chating" id="boxx">
-        <!-- <div class="chatother">
-            <h3 class="textothers">Ram:Hi There</h3>
-        </div>
-        <div class="chatother">
-            <h3 class="textothers">Ram:Hi There</h3>
-        </div>
-        <div class="chatother">
-            <h3 class="textothers">Ram:Hi There</h3>
-        </div>
-        <div class="chatother">
-            <h3 class="textothers">Ram:Hi There</h3>
-        </div>
-        <div class="chatyou">
-            <h3 class="textyou">You:Hi There</h3>
-        </div> -->
-    </div>
-    <div class="chat">
-        <form id="form">
-            <input type="text" id="messag" placeholder="plese write massage here" required>
-            <button class="sendbutt" id="sendbutt" type="submit">
-                Send
-            </button>
-        </form>
-    </div>
+    <hr>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
+    var timeoutforoption;
+    document.querySelector('.groupname1').addEventListener("click", creategroup);
     const token = localStorage.getItem("TOKEN")
     const box = document.getElementById("boxx")
+    const chat = document.querySelector(".chat")
     document.getElementById('form').addEventListener("submit", sendmess)
-    window.addEventListener("DOMContentLoaded", () => {
-        addtols()
-        autoloader()
+    window.addEventListener("DOMContentLoaded", async () => {
+        await pageloader2()
     })
-    async function addtols() {
-        var lastmsgid = 0;
-        if (localStorage.getItem("massages") == null) {
-            const arr = [];
-            localStorage.setItem("massages", JSON.stringify(arr));
-        } else {
-            const massages = JSON.parse(localStorage.getItem("massages"))
-            if (massages.length == 0) {
-            } else {
-                lastmsgid = massages[massages.length - 1].id
-                massages.forEach(element => {
-                    const div = document.createElement("div");
-                    const h3 = document.createElement("h3");
-                    var newobj = {}
-                    if (element.sender == "You") {
-                        div.className = "chatyou";
-                        h3.className = "textyou";
-                        h3.innerHTML = "You" + " - " + element.massages
-                    } else {
-                        div.className = "chatother";
-                        h3.className = "textothers";
-                        h3.innerHTML = element.sender + " - " + element.massages
-                    }
-                    box.appendChild(div);
-                    div.appendChild(h3)
-                });
-            }
-        }
-        pageloader(lastmsgid)
-    }
-    async function pageloader(lastmsgid) {
+    async function sendmess(e) {
+        e.preventDefault()
         try {
-            const config = {
-                url: "http://localhost:3000/group/getsmss/" + lastmsgid,
-                method: "GET",
-                headers: { "token": token }
-            }
-            const masages = await axios(config);
-            const messages = masages.data.messages;
-            const userid = masages.data.userId;
-            if (messages.length >= 1) {
-                await loadexp(messages, userid)
-                box.scrollTop = box.scrollHeight - box.clientHeight;
-            }
-        } catch (err) {
-            console.log(err)
-        }
-    }
-    async function loadexp(messages, userid) {
-        var lsdata = localStorage.getItem("massages")
-        lsdata = JSON.parse(lsdata);
-        messages.forEach(element => {
-            const div = document.createElement("div");
-            const h3 = document.createElement("h3");
-            var newobj = {}
-            if (element.userId == userid) {
-                div.className = "chatyou";
-                h3.className = "textyou";
-                h3.innerHTML = "You" + " - " + element.massage
-                newobj = {
-                    id: element.id,
-                    massages: element.massage,
-                    sender: "You"
-                }
-            } else {
-                div.className = "chatother";
-                h3.className = "textothers";
-                h3.innerHTML = element.name + " - " + element.massage
-                newobj = {
-                    id: element.id,
-                    massages: element.massage,
-                    sender: element.name
-                }
-            }
-            box.appendChild(div);
-            div.appendChild(h3)
-            lsdata.push(newobj)
-        });
-        lsdata = JSON.stringify(lsdata);
-        localStorage.setItem("massages", lsdata)
-    }
-    async function sendmess() {
-        try {
-            var message = document.getElementById('messag').value
+            const message = document.getElementById('messag').value
+            const currentgroup = await localStorage.getItem("currentgroup")
             const config = {
                 method: "POST",
                 url: "http://localhost:3000/group/sendmess",
                 data: {
-                    'message': message
+                    message: message,
+                    group_id: currentgroup
                 },
                 headers: {
                     "token": token
                 }
             }
             await axios(config)
+            const config2 = {
+                url: "http://localhost:3000/group/getsmss/" + currentgroup,
+                method: "GET",
+                headers: { "token": token }
+            }
+            const masages = await axios(config2);
+            const messages = masages.data.messages;
+            const userid = masages.data.userId;
+            await loadexp(messages, userid)
+            box.scrollTop = box.scrollHeight - box.clientHeight;
+        } catch (err) {
+            console.log(err)
+        }
+    }
+    async function creategroup() {
+        let promt = prompt("Please enter group name");
+        try {
+            if (promt == "") {
+                return
+            }else{
+                const config = {
+                method: "POST",
+                url: "http://localhost:3000/group/creategroup",
+                data: {
+                    groupname: promt,
+                    datenow: Date.now()
+                },
+                headers: {
+                    "token": token
+                }
+            }
+            const res = await axios(config)
+
+            await pageloader2()
+            }
 
         } catch (err) {
             console.log(err)
         }
     }
-    async function autoloader() {
-        setInterval(() => {
-            var lastid = JSON.parse(localStorage.getItem("massages"));
-            lastid = lastid[lastid.length - 1].id;
-            if (lastid == undefined) {
-                pageloader('0');
-            } else {
-                pageloader(lastid)
+    async function pageloader2() {
+        try {
+            const config = {
+                url: "http://localhost:3000/group/getgroup",
+                method: "get",
+                headers: {
+                    "token": token
+                }
             }
-        }, 1000)
-    }
+            const data1 = await axios(config);
+            if (data1) {
+                const datasa = document.getElementById('datas')
+                datasa.innerHTML = ""
+                data1.data.data.forEach(element => {
+                    const div = document.createElement("div")
+                    const h3 = document.createElement("h3")
+                    const input = document.createElement("input")
+                    const inputad = document.createElement("input")
+                    input.type = "hidden"
+                    input.value = element.group_id
+                    inputad.value = element.role
+                    inputad.type = "hidden"
+                    div.className = "groupdiv"
+                    h3.className = "groupname"
+                    h3.innerHTML = element.name
 
+                    div.appendChild(input);
+                    div.appendChild(inputad);
+                    div.appendChild(h3);
+                    datasa.appendChild(div)
+                    h3.addEventListener('click', loadmsg)
+                })
+            }
+        } catch (err) {
+            console.log(err)
+        }
+    }
+    async function loadmsg(e) {
+        const par = e.target.parentElement;
+        console.log(par)
+        var id = par.firstChild
+        var groupname=par.children[2]
+        id = id.value
+        await localStorage.setItem("currentgroup", id)
+        try {
+            const config = {
+                url: "http://localhost:3000/group/getsmss/" + id,
+                method: "GET",
+                headers: { "token": token }
+            }
+            const masages = await axios(config);
+            const messages = masages.data.messages;
+            const userid = masages.data.userId;
+            await loadexp(messages, userid)
+            box.scrollTop = box.scrollHeight - box.clientHeight;
+            const groupname3=document.querySelector('.groupname3');
+            const groupinfo=document.querySelector('.groupinfo');
+            groupinfo.style.display="inline";
+            groupname3.innerHTML=groupname.innerHTML
+            groupinfo.addEventListener("click",loadgroupinfo)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+    async function loadexp(messages, userid) {
+        const box = document.getElementById("boxx")
+        box.innerHTML = ""
+        chat.style.display = "inline"
+        messages.forEach(element => {
+            const div = document.createElement("div");
+            const h3 = document.createElement("h3");
+            if (element.userId == userid) {
+                div.className = "chatyou";
+                h3.className = "textyou";
+                h3.innerHTML = "You" + " - " + element.massage
+            } else {
+                div.className = "chatother";
+                h3.className = "textothers";
+                h3.innerHTML = element.name + " - " + element.massage
+            }
+            box.appendChild(div);
+            div.appendChild(h3)
+        });
+    }
+    async function autoload() {
+    }
+    async function loadgroupinfo(){
+        window.location.href="./groupsetting.html"
+    }
 </script>
 
 </html>

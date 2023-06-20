@@ -5,11 +5,11 @@
     box-sizing: border-box;
     font-family: 'Poppins',sans-serif;
     background: #dfdfdf;
-}
 
+}
 .head{
     width: 100%;
-    height: 100px;
+    height: 15%;
 }
 .head h2{
     font-size: 50px;
@@ -24,11 +24,10 @@
     margin-right: 25px;
 }
 .chat{
-    height: 50px;
+    height: 10%;
     width: 100%;
     text-align: center;
-    bottom: 20px;
-    position: fixed;
+    display: none;
 }
 .chat input{
     position: sticky;
@@ -60,10 +59,9 @@
 }
 .chating{
     margin:auto;
-    width: 80%;
-    height: 450px;
+    width: 100%;
+    height: 80%;
     overflow-y: auto;
-    border: 2px solid #333
 }
 .chatother{
     margin-top: 10px;
@@ -78,7 +76,6 @@
     float: right;
     margin-top: 10px;
     margin-right: 40px;
-    border: 2px solid red;
     height: auto;
     width: 80%;
     border-radius: 25px;
@@ -93,4 +90,85 @@
     padding-left: 20px;
     background-color: #FFC0CB;
     border-radius: 25px;
+}
+.parent{
+    height:570px ;
+    width: 100%;
+    border: 2px solid #777575;
+    border-bottom: none;
+    display: flex;
+}
+.child1{
+    height: 100%;
+    width: 30%;
+    overflow: auto;
+    float: right;
+}
+.child2{
+    height: 100%;
+    width: 70%;
+    float: left;
+    border-left:2px solid #222;
+}
+.groupdiv{
+    height: 15%;
+    width: 95%;
+    border: 2px solid red;
+    margin: auto;
+    border-radius: 25px;
+    background-color: green;
+    text-align: center;
+    margin-top: 6px;
+
+}
+#datas{
+    height: 90%;
+    width: 100%;
+}
+.groupname{
+    background-color: green;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+
+}
+.groupdiv1{
+    cursor: pointer;
+    height: 10%;
+    width: 95%;
+    border: 2px solid red;
+    margin: auto;
+    border-radius: 25px;
+    background-color: blue;
+    text-align: center;
+    margin-top: 6px;
+}
+.groupname1{
+    background-color: blue;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: 20px;
+    border-radius: 25px;
+
+}
+.selecttext{
+    text-align: center;
+    margin-top: 30%
+}
+.groupinfo{
+    height:10%;
+    width: 100%;
+    background-color: green;
+    border: 2px solid gray;
+    display: none;
+    cursor: pointer;
+}
+.groupname3{
+    background-color: green;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    font-size: 30px;
+    text-align: center;
 }

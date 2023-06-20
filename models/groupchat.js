@@ -8,6 +8,9 @@ const groupchat=sequelize.define("groupchat",
         allowNull:false,
         primaryKey:true
     },
+    groupid:{
+        type:Sequelize.STRING
+    },
     massage:{
         type:Sequelize.STRING(5000)
     },

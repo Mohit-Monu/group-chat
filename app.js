@@ -10,6 +10,7 @@ const groupchatRoutes=require("./routes/groupchat")
 
 const USER=require('./models/user')
 const GROUPCHAT=require('./models/groupchat')
+const GROUPS=require("./models/groups")
 
 const app=express();
 
@@ -25,8 +26,11 @@ app.use(groupchatRoutes)
 USER.hasMany(GROUPCHAT)
 GROUPCHAT.belongsTo(USER)
 
+USER.hasMany(GROUPS)
+GROUPS.belongsTo(USER)
+
 sequelize.sync(
-    // {force:true}
+    {force:true}
 )
 .then(
     app.listen(process.env.PORT)
