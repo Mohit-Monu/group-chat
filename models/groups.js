@@ -15,6 +15,9 @@ const groups = sequelize.define("groups", {
   },
   group_id:{
     type: Sequelize.STRING,
+  },
+  memberName:{
+    type: Sequelize.STRING,
   }
 });
 module.exports = groups;

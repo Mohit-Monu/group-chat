@@ -13,21 +13,23 @@ async function addviainput(req, res) {
           const searching = await GROUPS.findAll({
             where: { userId: search2.id },
           });
-          let flag=0;
+          let flag = 0;
           searching.forEach((element) => {
             if (element.group_id == req.body.group_id) {
-            res.status(503).json({ message: "Already a user" });
-              flag++
+              res.status(503).json({ message: "Already a user" });
+              flag++;
             }
           });
-          if(flag==0){
+          if (flag == 0) {
             await GROUPS.create({
-                name: req.body.group_name,
-                role: "simple",
-                userId: search2.id,
-                group_id: req.body.group_id,
-              });
-              res.status(200).json({ data: search2 });
+              name: req.group.name,
+              role: "simple",
+              userId: search2.id,
+              memberName: search2.name,
+
+              group_id: req.body.group_id,
+            });
+            res.status(200).json({ data: search2 });
           }
         } catch (err) {
           res.status(500).json({ message: "something went wrong" });
@@ -37,21 +39,23 @@ async function addviainput(req, res) {
           const searching = await GROUPS.findAll({
             where: { userId: search.id },
           });
-          let flag=0;
+          let flag = 0;
           searching.forEach((element) => {
             if (element.group_id == req.body.group_id) {
               res.status(503).json({ message: "Already a user" });
-              flag++
+              flag++;
             }
           });
-          if(flag==0){
+          if (flag == 0) {
             await GROUPS.create({
-                name: req.body.group_name,
-                role: "simple",
-                userId: search.id,
-                group_id: req.body.group_id,
-              });
-              res.status(200).json({ data: search });
+              name: req.group.name,
+              role: "simple",
+              userId: search.id,
+              memberName: search2.name,
+
+              group_id: req.body.group_id,
+            });
+            res.status(200).json({ data: search });
           }
         } catch (err) {
           res.status(500).json({ message: "something went wrong" });
@@ -63,4 +67,26 @@ async function addviainput(req, res) {
     res.status(500).json({ message: "something went wrong" });
   }
 }
-module.exports = { addviainput };
+async function verifyadmin(req, res) {
+  res.status(200).json({ message: "verified admin" });
+}
+async function promote(req,res){
+  try{
+    await GROUPS.update({role:"Admin"},{where:{id:req.body.id}})
+    res.status(200).json({ message: "Promoted" });
+
+  }catch(err){
+    res.status(500).json({ message: "something went wrong" });
+  }
+}
+async function kick(req,res){
+  try{
+    await GROUPS.destroy({where:{id:req.body.id}})
+    res.status(200).json({ message: "kicked" });
+
+  }catch(err){
+    res.status(500).json({ message: "something went wrong" });
+  }
+}
+
+module.exports = { addviainput, verifyadmin,promote,kick };

@@ -32,6 +32,7 @@ async function creategroup(req,res){
     await GROUPS.create({
       name:req.body.groupname,
       role:"Admin",
+      memberName:req.user.name,
       userId:req.user.id,
       group_id:req.body.datenow
     })
@@ -42,11 +43,22 @@ async function creategroup(req,res){
 }
 async function getgroup(req,res){
   try{
-    const data=await GROUPS.findAll({where:{userId:req.user.id}})
-    res.status(200).json({data});
+    const id=req.user.id
+    const data=await GROUPS.findAll({where:{userId:id}})
+    res.status(200).json({data:data});
   }catch(err){
     console.log(err)
     res.status(500).json({ message: "something went wrong" });
   }
 }
-module.exports = { sendmess, loadmsg,creategroup,getgroup};
+async function memberdetail(req,res){
+  try{
+    const data=await GROUPS.findAll({where:{group_id:req.body.group_id}})
+    res.status(200).json({data:data,user:req.user.id});
+  }catch(err){
+    console.log(err)
+    res.status(500).json({ message: "something went wrong" });
+
+  }
+}
+module.exports = { sendmess, loadmsg,creategroup,getgroup,memberdetail};

@@ -7,6 +7,8 @@ router.post("/group/sendmess",authentication.authenticationoftoken,controllergro
 router.get("/group/getsmss/:group_id",authentication.authenticationoftoken,controllergroupchat.loadmsg)
 router.post("/group/creategroup",authentication.authenticationoftoken,controllergroupchat.creategroup)
 router.get("/group/getgroup",authentication.authenticationoftoken,controllergroupchat.getgroup)
+router.post("/group/memberdetail",authentication.authenticationoftoken,controllergroupchat.memberdetail)
+
 
 
 module.exports=router
