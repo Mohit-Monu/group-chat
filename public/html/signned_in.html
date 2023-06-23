@@ -9,64 +9,65 @@
 </head>
 
 <body>
-    <div class="head">
-        <h2>Welcome to chat app</h2>
-        <a href="./sign_in.html" class="log">Log out</a>
-    </div>
-    <br>
-    <div class="parent">
-        <div class="child1">
-            <div class="groupdiv1">
-                <h3 class="groupname1">Create a group</h3>
-            </div>
-            <div id="datas">
-                <!-- <div class="groupdiv">
-                    <h3 class="groupname">Hero</h3>
-                </div>
-                <div class="groupdiv">
-                    <h3 class="groupname">Hero</h3>
-                </div>
-                <div class="groupdiv">
-                    <h3 class="groupname">Hero</h3>
-                </div> -->
-                <!-- <div class="groupdiv">
-                    <h3 class="groupname">Hero</h3>
-                </div>
-                <div class="groupdiv">
-                    <h3 class="groupname">Hero</h3>
-                </div>
-                <div class="groupdiv">
-                    <h3 class="groupname">Hero</h3>
-                </div>
-                <div class="groupdiv">
-                    <h3 class="groupname">Hero</h3>
-                </div> -->
-            </div>
+    <div class="hero">
+        <div class="head">
+            <h2>Welcome to chat app</h2>
+            <a href="./sign_in.html" class="log">Log out</a>
         </div>
-        <div class="child2">
-            <div class="groupinfo">
-                <h3 class="groupname3"></h3>
+        <br>
+        <div class="parent">
+            <div class="child1">
+                <div class="groupdiv1">
+                    <h3 class="groupname1">Create a group</h3>
+                </div>
+                <div id="datas">
+                    <!-- <div class="groupdiv">
+                    <h3 class="groupname">Hero</h3>
+                </div>
+                <div class="groupdiv">
+                    <h3 class="groupname">Hero</h3>
+                </div>
+                <div class="groupdiv">
+                    <h3 class="groupname">Hero</h3>
+                </div> -->
+                    <!-- <div class="groupdiv">
+                    <h3 class="groupname">Hero</h3>
+                </div>
+                <div class="groupdiv">
+                    <h3 class="groupname">Hero</h3>
+                </div>
+                <div class="groupdiv">
+                    <h3 class="groupname">Hero</h3>
+                </div>
+                <div class="groupdiv">
+                    <h3 class="groupname">Hero</h3>
+                </div> -->
+                </div>
             </div>
-            <div class="sharewithother2">
-                <input type="text" placeholder="enter email or phone to send invite" required id="sendinvitedet">
-                <button class="sendbutt" id="sendinvit" type="submit">
-                    Invite
-                </button>
-                <br>
-                <span id="statussending"></span>
-            </div>
-            <div class="memberadmin">
-                <table class="styled-table" id="styled-table">
-                    <thead id="thead">
-                        <tr id="tr">
-                            <!-- <th>Sl.no</th>
+            <div class="child2">
+                <div class="groupinfo">
+                    <h3 class="groupname3"></h3>
+                </div>
+                <div class="sharewithother2">
+                    <input type="text" placeholder="enter email or phone to send invite" required id="sendinvitedet">
+                    <button class="sendbutt" id="sendinvit" type="submit">
+                        Invite
+                    </button>
+                    <br>
+                    <span id="statussending"></span>
+                </div>
+                <div class="memberadmin">
+                    <table class="styled-table" id="styled-table">
+                        <thead id="thead">
+                            <tr id="tr">
+                                <!-- <th>Sl.no</th>
                             <th>Name</th>
                             <th>Promotion</th>
                             <th>Kickout</th> -->
-                        </tr>
-                    </thead>
-                    <tbody class="boxx2" id="boxx2">
-                        <!-- <tr>
+                            </tr>
+                        </thead>
+                        <tbody class="boxx2" id="boxx2">
+                            <!-- <tr>
                             <td>1</td>
                             <td>6000</td>
                             <td><input type="button" value="Admin" class="delete-btn"></td>
@@ -78,32 +79,46 @@
                             <td><input type="button" value="Simple" class="delete-btn"></td>
                             <td><input type="button" value="kick" class="delete-btn"></td>
                         </tr> -->
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
 
-            </div>
-            <div class="chating" id="boxx">
-                <h2 class="selecttext">Select group to view chats</h2>
-                <!-- <div class="chatother">
-                    <h3 class="textothers">Ram:Hi There</h3>
                 </div>
-                <div class="chatother">
-                    <h3 class="textothers">Ram:Hi There</h3>
+                <div class="chating" id="boxx">
+                    <h2 class="selecttext">Select group to view chats</h2>
+                    <!-- <div class="chatother">
+                        <h3 class="textothers">Ram:Hi There</h3>
+                    </div>
+                    <div class="chatother">
+                        <h3 class="textothers">Ram:Hi There</h3>
+                    </div>
+                    <div class="chatother">
+                        <a href="https://www.google.com">
+                            <img src="./images/3858629.png" alt="">
+                        </a>
+                    </div>
+                    <div class="chatyou">
+                        <h3 class="textyou">Ram:Hi There </h3>
+                        <img src="./images/3858629.png" alt="">
+                    </div>
+                    <div class="chatyou">
+                        <h3 class="textyou">Ram:Hi There </h3>
+                        <img src="./images/3858629.png" alt="">
+                    </div> -->
                 </div>
-                <div class="chatother">
-                    <h3 class="textothers">Ram:Hi There</h3>
+                <div class="chat">
+                    <form id="form">
+                        <input type="text" id="messag" placeholder="plese write massage here" required>
+                        <button class="sendbutt" id="sendbutt" type="submit">
+                            Send
+                        </button>
+                    </form>
+                    <form id="form2" enctype="multipart/form-data">
+                        <input class="custom-file-input" name="file" type="file" id="sendfileinpu">
+                        <button class="sendbutt" id="sendbuttfile" type="submit">
+                            Send
+                        </button>
+                    </form>
                 </div>
-                <div class="chatyou">
-                    <h3 class="textyou">You:Hi There</h3>
-                </div> -->
-            </div>
-            <div class="chat">
-                <form id="form">
-                    <input type="text" id="messag" placeholder="plese write massage here" required>
-                    <button class="sendbutt" id="sendbutt" type="submit">
-                        Send
-                    </button>
-                </form>
             </div>
         </div>
     </div>
@@ -111,9 +126,10 @@
     <br>
     <hr>
 </body>
+<script src="/socket.io/socket.io.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-    var timeoutforoption;
+    const socket = io()
     const statussendingmail = document.getElementById("statussending")
     const sendinvitedetails = document.getElementById("sendinvitedet").value
     const sharewithother2 = document.querySelector(".sharewithother2")
@@ -127,9 +143,52 @@
     const box = document.querySelector("chating")
     const chat = document.querySelector(".chat")
     document.getElementById('form').addEventListener("submit", sendmess)
+    document.getElementById('form2').addEventListener("submit", sendfile)
+
     window.addEventListener("DOMContentLoaded", async () => {
         await pageloader2()
     })
+    socket.on('message', (msg, username,groupid) => {
+        const currentgroup = localStorage.getItem("currentgroup")
+        if (currentgroup == groupid) {
+            const boxa = document.querySelector(".chating")
+            const div = document.createElement("div");
+            const h3 = document.createElement("h3");
+            div.className = "chatother";
+            h3.className = "textothers";
+            h3.innerHTML = username + " - " + msg
+            boxa.appendChild(div);
+            div.appendChild(h3)
+            boxa.scrollTop = boxa.scrollHeight - boxa.clientHeight;
+        }
+
+    })
+    socket.on('file', async (msg, username, groupid) => {
+        try {
+            const currentgroup = await localStorage.getItem("currentgroup")
+            if (currentgroup == groupid) {
+                const boxa = document.querySelector(".chating")
+                const div = document.createElement("div");
+                div.className = "chatother";
+                const a = document.createElement("a")
+                const img = document.createElement("img")
+                const h3 = document.createElement("h3");
+                h3.className = "textothers";
+                h3.innerHTML = username
+                a.href = msg
+                img.src = "./images/3858629.png"
+                boxa.appendChild(div);
+                div.appendChild(h3)
+                div.appendChild(a);
+                a.appendChild(img)
+                boxa.scrollTop = boxa.scrollHeight - boxa.clientHeight;
+            }
+        } catch (err) {
+            console.log(err)
+        }
+
+    })
+
     async function sendmess(e) {
         e.preventDefault()
         try {
@@ -147,40 +206,15 @@
                     "token": token
                 }
             }
-            await axios(config)
-
-            try {
-                const config = {
-                    url: "http://localhost:3000/group/getsmss/" + currentgroup,
-                    method: "GET",
-                    headers: { "token": token }
-                }
-                const masages = await axios(config);
-                const messages = masages.data.messages;
-                const userid = masages.data.userId;
-                removeall()
-
-                messages.forEach(element => {
-                    const div = document.createElement("div");
-                    const h3 = document.createElement("h3");
-                    if (element.userId == userid) {
-                        div.className = "chatyou";
-                        h3.className = "textyou";
-                        h3.innerHTML = "You" + " - " + element.massage
-                    } else {
-                        div.className = "chatother";
-                        h3.className = "textothers";
-                        h3.innerHTML = element.name + " - " + element.massage
-                    }
-                    boxa.appendChild(div);
-                    div.appendChild(h3)
-                });
-                boxa.scrollTop = boxa.scrollHeight - boxa.clientHeight;
-                groupinfo.addEventListener("click", loadgroupinfoadmin)
-                message.value = ""
-            } catch (err) {
-                console.log(err)
-            }
+            const data = await axios(config)
+            const div = document.createElement("div");
+            const h3 = document.createElement("h3");
+            div.className = "chatyou";
+            h3.className = "textyou";
+            h3.innerHTML = "You" + " - " + message.value
+            boxa.appendChild(div);
+            div.appendChild(h3)
+            socket.emit('message', message.value, data.data.username, currentgroup)
         } catch (err) {
             console.log(err)
         }
@@ -259,7 +293,6 @@
         boxx21.innerHTML = ""
         message.value = ""
         const boxa = document.querySelector(".chating")
-
         const par = e.target.parentElement;
         var id = par.firstChild
         var groupname = par.children[2]
@@ -286,18 +319,50 @@
             const userid = masages.data.userId;
             messages.forEach(element => {
                 const div = document.createElement("div");
-                const h3 = document.createElement("h3");
                 if (element.userId == userid) {
                     div.className = "chatyou";
-                    h3.className = "textyou";
-                    h3.innerHTML = "You" + " - " + element.massage
+                    if (element.type == "text") {
+                        const h3 = document.createElement("h3");
+                        h3.className = "textyou";
+                        h3.innerHTML = "You" + " - " + element.massage
+                        boxa.appendChild(div);
+                        div.appendChild(h3)
+                    } else {
+                        const a = document.createElement("a")
+                        const img = document.createElement("img")
+                        const h3 = document.createElement("h3");
+                        h3.className = "textyou";
+                        h3.innerHTML = "You"
+                        a.href = element.massage;
+                        img.src = "./images/3858629.png"
+                        boxa.appendChild(div);
+                        div.appendChild(h3)
+                        div.appendChild(a);
+                        a.appendChild(img)
+                    }
                 } else {
                     div.className = "chatother";
-                    h3.className = "textothers";
-                    h3.innerHTML = element.name + " - " + element.massage
+                    if (element.type == "text") {
+                        const h3 = document.createElement("h3");
+                        h3.className = "textothers";
+                        h3.innerHTML = element.name + " - " + element.massage
+                        boxa.appendChild(div);
+                        div.appendChild(h3)
+                    } else {
+                        const a = document.createElement("a")
+                        const img = document.createElement("img")
+                        const h3 = document.createElement("h3");
+                        h3.className = "textothers";
+                        h3.innerHTML = element.name
+                        a.href = element.massage;
+                        img.src = "./images/3858629.png"
+                        boxa.appendChild(div);
+                        div.appendChild(h3)
+                        div.appendChild(a);
+                        a.appendChild(img)
+                    }
                 }
-                boxa.appendChild(div);
-                div.appendChild(h3)
+
             });
             boxa.scrollTop = boxa.scrollHeight - boxa.clientHeight;
             groupinfo.addEventListener("click", loadgroupinfo)
@@ -537,8 +602,8 @@
                 }
             }
             await axios(config);
-            
-            statussendingmail.innerHTML=""
+
+            statussendingmail.innerHTML = ""
             const boxx21 = document.getElementById("boxx2");
             boxx21.innerHTML = "";
             const aon = "admin"
@@ -569,7 +634,7 @@
                 }
             }
             await axios(config);
-            statussendingmail.innerHTML=""
+            statussendingmail.innerHTML = ""
             const boxx21 = document.getElementById("boxx2");
             boxx21.innerHTML = "";
             const aon = "admin"
@@ -578,6 +643,41 @@
 
         }
     }
-</script>
 
+    async function sendfile(e) {
+        const groupid = localStorage.getItem("currentgroup")
+        e.preventDefault()
+        const fileInput = document.querySelector("#sendfileinpu")
+        const file = fileInput.files[0];
+        const formData = new FormData();
+        formData.append('file', file);
+        const config = {
+            url: "http://localhost:3000/group/sendfile/" + groupid,
+            method: "POST",
+            data: formData,
+            headers: {
+                "token": token
+            }
+        }
+        const data = await axios(config)
+        const boxa = document.querySelector(".chating")
+        const div = document.createElement("div");
+        div.className = "chatyou";
+        const a = document.createElement("a")
+        const img = document.createElement("img")
+        const h3 = document.createElement("h3");
+        h3.className = "textyou";
+        h3.innerHTML = "You"
+        a.href = data.data.data
+        img.src = "./images/3858629.png"
+        boxa.appendChild(div);
+        div.appendChild(h3)
+        div.appendChild(a);
+        a.appendChild(img)
+        boxa.scrollTop = boxa.scrollHeight - boxa.clientHeight;
+        socket.emit('file', data.data.data, data.data.username, groupid)
+    }
+
+
+</script>
 </html>
