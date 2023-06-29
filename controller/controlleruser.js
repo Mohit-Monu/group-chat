@@ -2,6 +2,7 @@ const bcrypt = require("bcrypt");
 const sequelize = require("../database");
 const jwt=require('jsonwebtoken')
 const USER = require("../models/user");
+
 async function signUp(req, res) {
   try {
     const t = await sequelize.transaction();

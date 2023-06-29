@@ -1,6 +1,6 @@
 const Sequelize=require("sequelize");
 const sequelize=require('../database');
-const groupchat=sequelize.define("groupchat",
+const groupchat=sequelize.define("ArchivedChat",
 {
     id:{
         type:Sequelize.INTEGER,
@@ -16,6 +16,9 @@ const groupchat=sequelize.define("groupchat",
     },
     name:{
         type:Sequelize.STRING
+    },
+    userId:{
+        type:Sequelize.INTEGER,
     },
     type:{
         type:Sequelize.STRING

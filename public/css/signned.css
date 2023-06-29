@@ -1,255 +1,278 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins',sans-serif;
-    background: #dfdfdf;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  background: #dfdfdf;
+}
+.head {
+  width: 100%;
+  height: 15%;
+}
+.head h2 {
+  font-size: 50px;
+  float: left;
+  margin-left: 50px;
+}
+.head a {
+  float: right;
+  font-size: 20px;
+  text-decoration: none;
+  margin-top: 25px;
+  margin-right: 25px;
+}
+.chat {
+  height: 10%;
+  width: 100%;
+  text-align: center;
+  display: none;
+}
+#messag {
+  position: sticky;
+  width: 70%;
+  height: 50px;
+  font-size: 17px;
+  padding: 0 25px;
+  margin-bottom: 15px;
+  border-radius: 30px;
+  border: none;
+  box-shadow: 0px 5px 10px 1px rgba(0, 0, 0, 0.05);
+  outline: none;
+  transition: 0.3s;
+  background-color: white;
+}
+#messag:focus {
+  width: 80%;
+}
+.sendbutt {
+  height: 50px;
+  width: 10%;
+  background: #222;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.3s;
+  color: #dfdfdf;
+  font-size: 20px;
+}
+.chating {
+  margin: auto;
+  width: 100%;
+  height: 80%;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+.chatother {
+  margin-top: 10px;
+  float: left;
+  margin-left: 40px;
+  border: 2px solid gray;
+  height: auto;
+  width: 80%;
+  border-radius: 25px;
+}
+.chatyou {
+  float: right;
+  margin-top: 10px;
+  margin-right: 40px;
+  height: auto;
+  width: 80%;
+  border-radius: 25px;
+  border: 2px solid gray;
 
 }
-.head{
-    width: 100%;
-    height: 15%;
+.textyou {
+  text-align: right;
+  padding-right: 20px;
+  background-color: #3498db;
+  border-radius: 25px;
 }
-.head h2{
-    font-size: 50px;
-    float: left;
-    margin-left: 50px;
+.textothers {
+  padding-left: 20px;
+  background-color: #ffc0cb;
+  border-radius: 25px;
 }
-.head a{
-    float: right;
-    font-size: 20px;
-    text-decoration:none;
-    margin-top: 25px;
-    margin-right: 25px;
+.parent {
+  height: 970px;
+  width: 100%;
+  border: 2px solid #777575;
+  border-bottom: none;
+  display: flex;
 }
-.chat{
-    height: 10%;
-    width: 100%;
-    text-align: center;
-    display: none;
+.child1 {
+  height: 100%;
+  width: 30%;
+  float: right;
 }
-.chat input{
-    position: sticky;
-    width: 70%;
-    height: 50px;
-    font-size: 17px;
-    padding: 0 25px;
-    margin-bottom: 15px;
-    border-radius: 30px;
-    border: none;
-    box-shadow: 0px 5px 10px 1px rgba(0,0,0, 0.05);
-    outline: none;
-    transition: .3s;
-    background-color: white;
+.child2 {
+  height: 100%;
+  width: 70%;
+  float: left;
+  border-left: 2px solid #222;
 }
-.chat input:focus{
-    width: 80%;
+.groupdiv {
+  height: 15%;
+  width: 95%;
+  border: 2px solid red;
+  margin: auto;
+  border-radius: 25px;
+  background-color: green;
+  text-align: center;
+  margin-top: 6px;
 }
-.sendbutt{
-    height: 50px;
-    width: 10%;
-    background: #222;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: .3s;
-    color: #dfdfdf;
-    font-size: 20px;
+#datas {
+  height: 90%;
+  width: 100%;
 }
-.chating{
-    margin:auto;
-    width: 100%;
-    height: 80%;
-    overflow-y: auto;
-    overflow-x: auto;
-
-
+.groupname {
+  background-color: green;
+  font-size: 20px;
+  text-align: center;
+  margin-top: 40px;
+  cursor: pointer;
 }
-.chatother{
-    margin-top: 10px;
-    float: left;
-    margin-left: 40px;
-    border: 2px solid gray;
-    height: auto;
-    width: 80%;
-    border-radius: 25px;
+.groupdiv1 {
+  cursor: pointer;
+  height: 10%;
+  width: 95%;
+  border: 2px solid red;
+  margin: auto;
+  border-radius: 25px;
+  background-color: blue;
+  text-align: center;
+  margin-top: 6px;
 }
-.chatyou{
-    float: right;
-    margin-top: 10px;
-    margin-right: 40px;
-    height: auto;
-    width: 80%;
-    border-radius: 25px;
+.groupname1 {
+  background-color: blue;
+  margin-top: 28px;
+  font-size: 20px;
+  border-radius: 25px;
 }
-.textyou{
-    text-align: right;
-    padding-right: 20px;
-    background-color: #3498DB;
-    border-radius: 25px;
+.selecttext {
+  text-align: center;
+  margin-top: 30%;
 }
-.textothers{
-    padding-left: 20px;
-    background-color: #FFC0CB;
-    border-radius: 25px;
+.sharewithother2 input {
+  position: sticky;
+  width: 70%;
+  height: 50px;
+  font-size: 17px;
+  padding: 0 25px;
+  margin-bottom: 15px;
+  border-radius: 30px;
+  border: none;
+  box-shadow: 0px 5px 10px 1px rgba(0, 0, 0, 0.05);
+  outline: none;
+  transition: 0.3s;
+  background-color: white;
 }
-.parent{
-    height:570px ;
-    width: 100%;
-    border: 2px solid #777575;
-    border-bottom: none;
-    display: flex;
+.sharewithother2 input:focus {
+  width: 80%;
 }
-.child1{
-    height: 100%;
-    width: 30%;
-    float: right;
+.groupinfo {
+  width: 100%;
+  height: 10%;
+  background-color: green;
+  border: 2px solid gray;
+  display: none;
+  cursor: pointer;
 }
-.child2{
-    height: 100%;
-    width: 70%;
-    float: left;
-    border-left:2px solid #222;
+.groupname3 {
+  width: 100%;
+  background-color: green;
+  margin-top: 25px;
+  font-size: 30px;
+  text-align: center;
 }
-.groupdiv{
-    height: 15%;
-    width: 95%;
-    border: 2px solid red;
-    margin: auto;
-    border-radius: 25px;
-    background-color: green;
-    text-align: center;
-    margin-top: 6px;
-
+.sharewithother2 {
+  text-align: center;
+  margin-top: 5px;
+  display: none;
+  width: 100%;
+  height: 18%;
 }
-#datas{
-    height: 90%;
-    width: 100%;
-}
-.groupname{
-    background-color: green;
-    font-size: 20px;
-    text-align: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    cursor: pointer;
-
-}
-.groupdiv1{
-    cursor: pointer;
-    height: 10%;
-    width: 95%;
-    border: 2px solid red;
-    margin: auto;
-    border-radius: 25px;
-    background-color: blue;
-    text-align: center;
-    margin-top: 6px;
-}
-.groupname1{
-    background-color: blue;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    font-size: 20px;
-    border-radius: 25px;
-
-}
-.selecttext{
-    text-align: center;
-    margin-top: 30%
-}
-.sharewithother2 input{
-    position: sticky;
-    width: 70%;
-    height: 50px;
-    font-size: 17px;
-    padding: 0 25px;
-    margin-bottom: 15px;
-    border-radius: 30px;
-    border: none;
-    box-shadow: 0px 5px 10px 1px rgba(0,0,0, 0.05);
-    outline: none;
-    transition: .3s;
-    background-color: white;
-}
-.sharewithother2 input:focus{
-    width: 80%;
-}
-.groupinfo{
-    width: 100%;
-    height: 10%;
-    background-color: green;
-    border: 2px solid gray;
-    display: none;
-    cursor: pointer;  
-     
-}
-.groupname3{
-    width: 100%;
-    background-color: green;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    font-size: 30px;
-    text-align: center;
-}
-.sharewithother2{
-    text-align: center;
-    margin-top: 5px;
-    display: none;
-    width: 100%;
-    height: 18%;
-
-}
-.memberadmin{
-    height: wrap;
-    width: 100%;
-    display: none;
+.memberadmin {
+  height: wrap;
+  width: 100%;
+  display: none;
 }
 .styled-table {
-    border-collapse: collapse;
-    margin: 25px 0;
-    font-size: 22px;
-    font-family: sans-serif;
-    width: 90%;
-    margin: auto;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 22px;
+  font-family: sans-serif;
+  width: 90%;
+  margin: auto;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 .styled-table thead tr {
-    background-color: #009879;
-    color: black;
-    text-align: left;
-    
+  background-color: #009879;
+  color: black;
+  text-align: left;
 }
 .styled-table th,
 .styled-table td {
-    padding: 12px 15px;
-    border-bottom: 2px solid black;
-    
+  padding: 12px 15px;
+  border-bottom: 2px solid black;
 }
 
-.styled-table tbody tr {
-}
+/* .styled-table tbody tr {
+} */
 
 .styled-table tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
+  background-color: #f3f3f3;
 }
 
 .styled-table tbody tr:last-of-type {
-    border-bottom: 6px solid #009879;
+  border-bottom: 6px solid #009879;
 }
 .styled-table tbody tr.active-row {
-    font-weight: bold;
-    color: #009879;
+  font-weight: bold;
+  color: #009879;
 }
-.delete-btn{
-    background: #000;
-    margin-top: 10px;
-    font-size: 22px;
-    cursor: pointer;
-    color: white;
-    height: 60px;
-    width: wrap;
-    border-radius: 30px;
+.delete-btn {
+  background: #000;
+  margin-top: 10px;
+  font-size: 22px;
+  cursor: pointer;
+  color: white;
+  height: 60px;
+  width: wrap;
+  border-radius: 30px;
+}
+input[type="file"]::file-selector-button {
+  margin-right: 20px;
+  border: none;
+  background: #084cdf;
+  padding: 10px 20px;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background: #0d45a5;
+}
+/* .hero {
+  height: 100vh;
+  width: 100vw;
+} */
+.chatyou img{
+    height: 100px;
+    width: 100px;
+    float: right;
+    margin-top: 15px;
+    margin-right: 30px;
+    margin-bottom: 10px;
+}
+.chatother img{
+    height: 100px;
+    width: 100px;
+    float: left;
+    margin-top: 15px;
+    margin-left: 30px;
+    margin-bottom: 10px;
+
 }

@@ -535,6 +535,43 @@
                     boxx21.appendChild(tr)
                     but2.addEventListener("click", kick)
                     count++
+                }else{
+                    const tr = document.createElement("tr")
+                    const td1 = document.createElement("td")
+                    const td2 = document.createElement("td")
+                    const td3 = document.createElement("td")
+                    const td4 = document.createElement("td")
+                    const td5 = document.createElement("td")
+                    const but1 = document.createElement("input")
+                    const but2 = document.createElement("input")
+                    if (element.role == "Admin") {
+                        but1.value = "Already a Admin"
+                    } else {
+                        but1.addEventListener("click", promote)
+                        but1.value = "Click to promote"
+                    }
+                    if (count % 2 == 0) {
+                        tr.className = "active-row"
+                    }
+                    td1.style.display = "none"
+                    but1.type = "button"
+                    but1.className = "delete-btn"
+                    but2.type = "button"
+                    but2.value = "Leave"
+                    but2.className = "delete-btn"
+                    td1.innerHTML = element.id;
+                    td2.innerHTML = count;
+                    td3.innerHTML = "You";
+                    td4.appendChild(but1)
+                    td5.appendChild(but2)
+                    tr.appendChild(td1)
+                    tr.appendChild(td2)
+                    tr.appendChild(td3)
+                    tr.appendChild(td4)
+                    tr.appendChild(td5)
+                    boxx21.appendChild(tr)
+                    but2.addEventListener("click", kick)
+                    count++
                 }
             })
 
@@ -569,6 +606,30 @@
                     td1.innerHTML = element.id;
                     td2.innerHTML = count;
                     td3.innerHTML = element.memberName;
+                    tr.appendChild(td1)
+                    tr.appendChild(td2)
+                    tr.appendChild(td3)
+                    tr.appendChild(td4)
+                    boxx21.appendChild(tr)
+                    count++
+                }else{
+                    const tr = document.createElement("tr")
+                    const td1 = document.createElement("td")
+                    const td2 = document.createElement("td")
+                    const td3 = document.createElement("td")
+                    const td4 = document.createElement("td")
+                    if (element.role == "Admin") {
+                        td4.innerHTML = "Admin"
+                    } else {
+                        td4.innerHTML = "Simple"
+                    }
+                    if (count % 2 == 0) {
+                        tr.className = "active-row"
+                    }
+                    td1.style.display = "none"
+                    td1.innerHTML = element.id;
+                    td2.innerHTML = count;
+                    td3.innerHTML = "You";
                     tr.appendChild(td1)
                     tr.appendChild(td2)
                     tr.appendChild(td3)
@@ -621,7 +682,13 @@
         var name = par2.children[2]
         name = name.innerHTML
         console.log(id)
-        if (confirm("are you sure you want to Kick " + name)) {
+        var msg=""
+        if(name=="You"){
+            msg="Are you sure you want to leave this group"
+        }else{
+            msg="are you sure you want to Kick " + name
+        }
+        if (confirm(msg)) {
             const config = {
                 url: "http://localhost:3000/admin/kick",
                 method: "POST",

@@ -13,7 +13,8 @@ const groups = sequelize.define("groups", {
   role: {
     type: Sequelize.STRING,
   },
-  group_id:{
+  
+  :{
     type: Sequelize.STRING,
   },
   memberName:{
