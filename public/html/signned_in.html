@@ -148,7 +148,7 @@
     window.addEventListener("DOMContentLoaded", async () => {
         await pageloader2()
     })
-    socket.on('message', (msg, username,groupid) => {
+    socket.on('message', (msg, username, groupid) => {
         const currentgroup = localStorage.getItem("currentgroup")
         if (currentgroup == groupid) {
             const boxa = document.querySelector(".chating")
@@ -161,7 +161,6 @@
             div.appendChild(h3)
             boxa.scrollTop = boxa.scrollHeight - boxa.clientHeight;
         }
-
     })
     socket.on('file', async (msg, username, groupid) => {
         try {
@@ -186,9 +185,7 @@
         } catch (err) {
             console.log(err)
         }
-
     })
-
     async function sendmess(e) {
         e.preventDefault()
         try {
@@ -219,7 +216,6 @@
             console.log(err)
         }
     }
-
     async function creategroup() {
         let promt = prompt("Please enter group name");
         try {
@@ -535,7 +531,7 @@
                     boxx21.appendChild(tr)
                     but2.addEventListener("click", kick)
                     count++
-                }else{
+                } else {
                     const tr = document.createElement("tr")
                     const td1 = document.createElement("td")
                     const td2 = document.createElement("td")
@@ -612,7 +608,7 @@
                     tr.appendChild(td4)
                     boxx21.appendChild(tr)
                     count++
-                }else{
+                } else {
                     const tr = document.createElement("tr")
                     const td1 = document.createElement("td")
                     const td2 = document.createElement("td")
@@ -682,11 +678,11 @@
         var name = par2.children[2]
         name = name.innerHTML
         console.log(id)
-        var msg=""
-        if(name=="You"){
-            msg="Are you sure you want to leave this group"
-        }else{
-            msg="are you sure you want to Kick " + name
+        var msg = ""
+        if (name == "You") {
+            msg = "Are you sure you want to leave this group"
+        } else {
+            msg = "are you sure you want to Kick " + name
         }
         if (confirm(msg)) {
             const config = {
@@ -716,8 +712,12 @@
         e.preventDefault()
         const fileInput = document.querySelector("#sendfileinpu")
         const file = fileInput.files[0];
+        console.log(fileInput.files[0])
+        console.log(typeof (fileInput))
+
         const formData = new FormData();
         formData.append('file', file);
+        console.log(formData)
         const config = {
             url: "http://localhost:3000/group/sendfile/" + groupid,
             method: "POST",
@@ -747,4 +747,5 @@
 
 
 </script>
+
 </html>

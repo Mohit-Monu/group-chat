@@ -83,6 +83,7 @@ async function sendfile(req, res) {
     const t = await sequelize.transaction();
     try {
       const userId = req.user.id;
+      console.log(req.file)
       const filename = "File" + userId + "/" + Date.now()+req.file.originalname
       const fileURl = await uploadToS3(req.file.buffer, filename);
       await GROUPCHAT.create(
